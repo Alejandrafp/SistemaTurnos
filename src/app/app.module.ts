@@ -13,6 +13,7 @@ import { ProgressComponent } from './pages/progress/progress.component';
 import { Grafica1Component } from './pages/grafica1/grafica1.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PagesComponent } from './pages/pages.component';
+import { SeguimientoComponent } from './pages/Seguimiento/seguimiento.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PagesComponent } from './pages/pages.component';
     RegisterComponent,
     NopagefoundComponent,
     DashboardComponent,
+    SeguimientoComponent,
     BreadcrumbsComponent,
     SidebarComponent,
     HeaderComponent,
