@@ -18,6 +18,10 @@ import { TicketComponent } from './pages/ticket/ticket.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
+import { SalaesperaComponent } from './pages/salaespera/salaespera.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,7 @@ import {MatRadioModule} from '@angular/material/radio';
     DashboardComponent,
     SeguimientoComponent,
     TicketComponent,
+    SalaesperaComponent,
     BreadcrumbsComponent,
     SidebarComponent,
     HeaderComponent,
@@ -40,7 +45,10 @@ import {MatRadioModule} from '@angular/material/radio';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCardModule,
+    MatDividerModule,
+    MatProgressBarModule
   ],
   bootstrap: [AppComponent]
 })
