@@ -1,0 +1,59 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Proceso de solicitud de ticket</h2>
+
+                        <h6 class="card-subtitle"></h6>
+                        <mat-stepper orientation="vertical">
+                            <mat-step>
+                                <ng-template matStepLabel>Paso 1</ng-template>
+                                <ng-template matStepContent>
+                                    <p>Atención</p>
+                                    <mat-radio-group aria-label="Seleccione una opción">
+                                        <div>
+                                            <mat-radio-button value="1">Normal</mat-radio-button>
+                                        </div>
+
+                                        <div>
+                                            <mat-radio-button value="2">Preferencial</mat-radio-button>
+                                        </div>
+                                    </mat-radio-group>
+                                    <div>
+                                        <button mat-button matStepperNext button type="button"
+                                            class="btn waves-effect waves-light btn-outline-success">Siguiente</button>
+                                    </div>
+                                </ng-template>
+                            </mat-step>
+                            <mat-step>
+                                <ng-template matStepLabel>Paso 2</ng-template>
+                                <ng-template matStepContent>
+                                    <p>Tramite</p>
+                                    <mat-radio-group aria-label="Seleccione una opción">
+                                        <div>
+                                            <mat-radio-button value="1">Caja</mat-radio-button>
+                                        </div>
+
+                                        <div>
+                                            <mat-radio-button value="2">Servicio al cliente</mat-radio-button>
+                                        </div>
+                                    </mat-radio-group>
+                                    <div>
+                                        <button mat-button matStepperNext button type="button"
+                                        class="btn waves-effect waves-light btn-outline-success">Imprimir
+                                        ticket</button>
+                                    </div>
+                                </ng-template>
+                            </mat-step>
+                        </mat-stepper>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
