@@ -8,17 +8,15 @@
                     <h3 class="box-title m-b-20">Bienvenido al sistema de tickets</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Ingrese su identidad"> </div>
-                    </div>
-                    
+                            <input class="form-control"  [(ngModel)]="id" name="id" [value]="id" type="text" minlength="13"  maxlength="13" required=""  placeholder="Ingrese su identidad" data-mask="9999-9999-99999"> </div>
+                           
+                        </div>
                     <div class="form-group text-center">
                         <div class="col-xs-12 p-b-20">
-                            <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Iniciar Sesion</button>
+                            <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit" [routerLink]="id === '0501200001194' ? ['/dashboard'] : ['/ticket'] ">Gestión</button>
                         </div>
                     </div>
-                   
                 </form>
-                
             </div>
         </div>
     </div>

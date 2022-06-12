@@ -22,6 +22,7 @@ import { SalaesperaComponent } from './pages/salaespera/salaespera.component';
 import { MatCardModule } from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatRadioModule,
     MatCardModule,
     MatDividerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    FormsModule
   ],
   bootstrap: [AppComponent]
 })
