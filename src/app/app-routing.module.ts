@@ -8,6 +8,7 @@ import { Grafica1Component } from './pages/grafica1/grafica1.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
 import { PagesComponent } from './pages/pages.component';
 import { SeguimientoComponent } from './pages/Seguimiento/seguimiento.component';
+import { TicketComponent } from './pages/ticket/ticket.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
      children:[
       {path: 'dashboard', component: DashboardComponent},
       {path: 'seguimiento', component: SeguimientoComponent},
+      {path: 'ticket', component: TicketComponent},
       {path: 'progress', component: ProgressComponent},
       {path: 'grafica1', component: Grafica1Component},
       {path: '', redirectTo: '/dashboard', pathMatch: 'full'},

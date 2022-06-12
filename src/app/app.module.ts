@@ -14,6 +14,10 @@ import { Grafica1Component } from './pages/grafica1/grafica1.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PagesComponent } from './pages/pages.component';
 import { SeguimientoComponent } from './pages/Seguimiento/seguimiento.component';
+import { TicketComponent } from './pages/ticket/ticket.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,7 @@ import { SeguimientoComponent } from './pages/Seguimiento/seguimiento.component'
     NopagefoundComponent,
     DashboardComponent,
     SeguimientoComponent,
+    TicketComponent,
     BreadcrumbsComponent,
     SidebarComponent,
     HeaderComponent,
@@ -33,6 +38,9 @@ import { SeguimientoComponent } from './pages/Seguimiento/seguimiento.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatStepperModule,
+    MatRadioModule
   ],
   bootstrap: [AppComponent]
 })
