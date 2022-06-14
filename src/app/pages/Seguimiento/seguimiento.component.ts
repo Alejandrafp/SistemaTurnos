@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TramiteType } from 'src/app/models/tramite';
+import { SocketioService } from 'src/app/services/socketio.service';
+import { TicketsService } from 'src/app/services/tickets.service';
 
 @Component({
   selector: 'app-seguimiento',
@@ -7,11 +10,40 @@ import { Component, OnInit } from '@angular/core';
     './seguimiento.component.css'
   ]
 })
-export class SeguimientoComponent implements OnInit {
+export class SeguimientoComponent implements OnInit, OnDestroy {
+  get turnoActual(){
+    return this.socketService.turnoActual
+  }
 
-  constructor() { }
+  get tramite() {
+    return TramiteType;
+  }
+  
+  
+  constructor(private socketService: SocketioService, private ticketService: TicketsService) {}
+  
+  ngOnInit() {
+    this.socketService.setupSocketConnection();
+    // this.ticketService.create({
+    //   identidad: "0002130123",
+    //   estado: 0,
+    //   tramite: this.tramite.Caja,
+    //   atencion: 0,
+    //   ticket: ""
+    // }).subscribe(console.log);
+    this.ticketService.get().subscribe(console.log)
+    
+  }
 
-  ngOnInit(): void {
+  ngOnDestroy() {
+    this.socketService.disconnect();
+  }
+
+  siguienteCaja(){
+    this.socketService.siguienteTurnoCaja();
+  }
+  siguienteServ(){
+    this.socketService.siguienteTurnoServ();
   }
 
 }

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { TramiteType } from './models/tramite';
+import { SocketioService } from './services/socketio.service';
+import { TicketsService } from './services/tickets.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'adminpro';
+
+  
 }
