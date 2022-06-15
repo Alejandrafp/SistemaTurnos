@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Ticket } from 'src/app/models/tickets.interface';
 import { TramiteType } from 'src/app/models/tramite';
 import { SocketioService } from 'src/app/services/socketio.service';
 import { TicketsService } from 'src/app/services/tickets.service';
@@ -20,12 +21,17 @@ export class SalaesperaComponent implements OnInit {
   get tramite() {
     return TramiteType;
   }
+
+  get ticketCliente() {
+    const ticket:Ticket = JSON.parse(localStorage?.getItem('ticket') ?? "");
+    return ticket;
+  }
   
   
   constructor(private socketService: SocketioService, private ticketService: TicketsService) {}
   
   ngOnInit() {
-    this.socketService.setupSocketConnection();
+    // this.socketService.setupSocketConnection();
     // this.ticketService.create({
     //   identidad: "0002130123",
     //   estado: 0,
@@ -37,9 +43,11 @@ export class SalaesperaComponent implements OnInit {
     
   }
 
-  ngOnDestroy() {
-    this.socketService.disconnect();
-  }
+  
+
+  // ngOnDestroy() {
+  //   this.socketService.disconnect();
+  // }
 
   // siguienteCaja(){
   //   this.socketService.siguienteTurnoCaja();

@@ -8,20 +8,22 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">Proceso de solicitud de ticket</h2>
-
+                        <button  [disabled]="formValid()" (click)="imprimir()">Imprimir</button>
                         <h6 class="card-subtitle"></h6>
+                        <form>
+
                         <mat-stepper orientation="vertical">
                             <mat-step>
                                 <ng-template matStepLabel>Paso 1</ng-template>
                                 <ng-template matStepContent>
                                     <p>Atención</p>
-                                    <mat-radio-group aria-label="Seleccione una opción">
+                                    <mat-radio-group [formControl]="atencionFormControl" aria-label="Seleccione una opción">
                                         <div>
-                                            <mat-radio-button value="1">Normal</mat-radio-button>
+                                            <mat-radio-button value="0">Normal</mat-radio-button>
                                         </div>
 
                                         <div>
-                                            <mat-radio-button value="2">Preferencial</mat-radio-button>
+                                            <mat-radio-button value="1">Preferencial</mat-radio-button>
                                         </div>
                                     </mat-radio-group>
                                     <div>
@@ -34,23 +36,29 @@
                                 <ng-template matStepLabel>Paso 2</ng-template>
                                 <ng-template matStepContent>
                                     <p>Tramite</p>
-                                    <mat-radio-group aria-label="Seleccione una opción">
+                                    <mat-radio-group [formControl]="tramiteFormControl" aria-label="Seleccione una opción">
                                         <div>
-                                            <mat-radio-button value="1">Caja</mat-radio-button>
+                                            <mat-radio-button value="0">Caja</mat-radio-button>
                                         </div>
 
                                         <div>
-                                            <mat-radio-button value="2">Servicio al cliente</mat-radio-button>
+                                            <mat-radio-button value="1">Servicio al cliente</mat-radio-button>
                                         </div>
                                     </mat-radio-group>
-                                    <div>
-                                        <button mat-button matStepperNext button type="button"
-                                        class="btn waves-effect waves-light btn-outline-success">Imprimir
-                                        ticket</button>
-                                    </div>
+                                    
                                 </ng-template>
                             </mat-step>
                         </mat-stepper>
+                        <div>
+                            <button
+                            [disabled]="formValid()"
+                            mat-button button type="button"
+                            (click)="createTicket()"
+                            class="btn btn-block btn-lg btn-info btn-rounded">Imprimir
+                            ticket</button>
+                        </div>
+                    </form>
+
                     </div>
                 </div>
             </div>

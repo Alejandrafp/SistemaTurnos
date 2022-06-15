@@ -10,6 +10,10 @@ import { TicketsService } from './services/tickets.service';
 })
 export class AppComponent {
   title = 'adminpro';
-
+  constructor(private ticketService: TicketsService) {}
+  
+  ngOnInit() {
+    this.ticketService.setupSocket();
+  }
   
 }

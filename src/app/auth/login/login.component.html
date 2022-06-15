@@ -13,7 +13,7 @@
                         </div>
                     <div class="form-group text-center">
                         <div class="col-xs-12 p-b-20">
-                            <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit" [routerLink]="id === '0501200001194' ? ['/dashboard'] : ['/ticket'] ">Gestión</button>
+                            <button class="btn btn-block btn-lg btn-info btn-rounded" (click)= "login()" type="submit" [routerLink]="id === '0501200001194' ? ['/dashboard'] : ['/ticket'] ">Gestión</button>
                         </div>
                     </div>
                 </form>

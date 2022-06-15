@@ -8,12 +8,17 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">Seguimiento de turnos</h2>
-                        <p align="right"> <button (click)="siguienteCaja()" type="button"
+                        <p align="right"> <button (click)="siguienteTurnoCaja()"  type="button"
                                 class="btn waves-effect waves-light btn-outline-success">Siguiente Caja</button> </p>
-                                <p align="right"> <button (click)="siguienteServ()" type="button"
-                                    class="btn waves-effect waves-light btn-outline-success">Siguiente Servicio</button> </p>
+                        <p align="right"> <button (click)="siguienteTurnoServ()" type="button"
+                            class="btn waves-effect waves-light btn-outline-success">Siguiente Servicio</button> 
+                        </p>
+                        <p align="right"> <button (click)="reiniciar()" type="button"
+                            class="btn waves-effect waves-light btn-outline-success">Reiniciar</button> 
+                        </p>
                         <h6 class="card-subtitle"></h6>
                         <div class="table-responsive">
+                            <!-- <h1> {{tramite[tramite.Caja]}} - {{tramite.Caja}} {{horaActual | date: 'HH:mm:ss'}} </h1> -->
                             <table id="demo-foo-addrow" class="table full-color-table full-inverse-table hover-table"
                                 data-page-size="10">
                                 <thead>
@@ -23,49 +28,17 @@
                                         <th>Tramite</th>
                                         <th>Tiempo Espera</th>
                                         <th>Estado</th>
-                                        <!-- <th>Acción</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Preferencial</td>
-                                        <td>Servicio al cliente</td>
-                                        <td><span class="label label-danger">00:10:12</span> </td>
-                                        <td>Atendiendo</td>
-                                        <!-- <td>
-                                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Finalizar"><i class="ti-close" aria-hidden="true"></i></button>
-                                                </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Normal</td>
-                                        <td>Caja</td>
-                                        <td><span class="label label-danger">01:00:10</span> </td>
-                                        <td>Finalizado</td>
-                                        <!-- <td>
-                                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Finalizar"><i class="ti-close" aria-hidden="true"></i></button>
-                                                </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Normal</td>
-                                        <td>Caja</td>
-                                        <td><span class="label label-danger">00:23:20</span> </td>
-                                        <td>En Espera</td>
-                                        <!-- <td>
-                                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Finalizar"><i class="ti-close" aria-hidden="true"></i></button>
-                                                </td> -->
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Normal</td>
-                                        <td>Caja</td>
-                                        <td><span class="label label-danger">00:05:50</span> </td>
-                                        <td>En Espera</td>
-                                        <!-- <td>
-                                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Finalizar"><i class="ti-close" aria-hidden="true"></i></button>
-                                                </td> -->
+                                    
+                                    <tr *ngFor="let ticket of ticketsArray">
+                                        <td>{{ticket.ticket}}</td>
+                                        <td>{{atencion[ticket.atencion]}}</td>
+                                        <td>{{tramite[ticket.tramite]}}</td>
+                                        <td *ngIf="ticket.estado === 0"><span class="label label-danger">{{ calculateDiff(ticket.createdAt!,horaActual,ticket.estado!) | date: 'HH:mm:ss'}}</span></td>
+                                        <td *ngIf="ticket.estado !== 0"><span class="label label-sucess"> </span></td>
+                                        <td>{{estado[ticket.estado]}}</td>
                                     </tr>
 
                                 </tbody>

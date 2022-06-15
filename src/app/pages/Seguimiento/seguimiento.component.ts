@@ -1,4 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AtencionType } from 'src/app/models/atencion';
+import { EstadoType } from 'src/app/models/estado';
+import { Ticket } from 'src/app/models/tickets.interface';
 import { TramiteType } from 'src/app/models/tramite';
 import { SocketioService } from 'src/app/services/socketio.service';
 import { TicketsService } from 'src/app/services/tickets.service';
@@ -10,40 +13,80 @@ import { TicketsService } from 'src/app/services/tickets.service';
     './seguimiento.component.css'
   ]
 })
-export class SeguimientoComponent implements OnInit, OnDestroy {
-  get turnoActual(){
-    return this.socketService.turnoActual
+export class SeguimientoComponent implements OnInit  {
+  
+  public get turnoActual(){
+    return this.ticketServ.turnoActual;
   }
+  
+  private tickets: Ticket[] = [];
+
+  calculateDiff(dateTicket: Date, dateActual: Date, estado: number){
+    let days: number = 0;
+    if(estado === EstadoType.Espera) {
+      let date = new Date(dateTicket);
+     return days = Math.floor((dateActual.getTime() - date.getTime()) );
+    }
+    return 0;
+  }
+
+  public horaActual: any = new Date();
+
+  public diffDate(created: Date): Date {
+    return  new Date(this.horaActual.getTime()-created.getTime());
+  }
+
+  get ticketsArray() {
+    return [...this.tickets];
+  }
+  constructor(private ticketServ: TicketsService){}
+  
+  ngOnInit(): void {
+     setInterval(() => {         
+      this.horaActual = new Date();
+    }, 1000);
+   this.ticketServ.get().subscribe(tickets => this.tickets = tickets );
+  }
+
+  siguienteTurnoCaja()
+  {
+    //Se solicita cambio de turno
+    this.ticketServ.siguienteTurnoCaja();
+    setTimeout(() => {    
+      this.ticketServ.get().subscribe(tickets => this.tickets = tickets );
+    }, 1000);
+  }
+
+  reiniciar() {
+    this.ticketServ.deleteAll().subscribe(resp => {
+      this.ticketServ.get().subscribe(tickets => this.tickets = tickets );
+    });
+  }
+  siguienteTurnoServ()
+  {
+    //Se solicita cambio de turno
+    this.ticketServ.siguienteTurnoServ();
+    setTimeout(() => {    
+      this.ticketServ.get().subscribe(tickets => this.tickets = tickets );
+    }, 1000);
+  }
+  
+
+
 
   get tramite() {
     return TramiteType;
   }
-  
-  
-  constructor(private socketService: SocketioService, private ticketService: TicketsService) {}
-  
-  ngOnInit() {
-    this.socketService.setupSocketConnection();
-    // this.ticketService.create({
-    //   identidad: "0002130123",
-    //   estado: 0,
-    //   tramite: this.tramite.Caja,
-    //   atencion: 0,
-    //   ticket: ""
-    // }).subscribe(console.log);
-    this.ticketService.get().subscribe(console.log)
-    
+
+  get atencion() {
+    return AtencionType;
   }
 
-  ngOnDestroy() {
-    this.socketService.disconnect();
+  get estado() {
+    return EstadoType;
   }
-
-  siguienteCaja(){
-    this.socketService.siguienteTurnoCaja();
-  }
-  siguienteServ(){
-    this.socketService.siguienteTurnoServ();
-  }
+  
+  
+  
 
 }

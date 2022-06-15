@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  login() {
+    localStorage.setItem('identidad', this.id);
+  }
   public id : string = '';
   // onRutas() {
     
